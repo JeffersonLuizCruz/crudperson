@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.dio.crudperson.entities.Person;
 import com.dio.crudperson.repositories.PersonRepository;
@@ -12,6 +13,7 @@ import com.dio.crudperson.services.execeptions.BadRequestException;
 
 import javassist.NotFoundException;
 
+@Service
 public class PersonServiceImpl implements PersonService{
 	
 	private final PersonRepository personRepository;
