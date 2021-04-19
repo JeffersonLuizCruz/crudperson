@@ -2,8 +2,8 @@ package com.dio.crudperson.entities;
 
 import java.io.Serializable;
 import java.time.LocalDate;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.CollectionTable;
 import javax.persistence.Column;
@@ -12,7 +12,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
-import com.dio.crudperson.entities.enums.PhoneType;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 import lombok.EqualsAndHashCode;
@@ -45,7 +44,7 @@ public class Person implements Serializable{
 	
 	@ElementCollection
 	@CollectionTable(name = "phones")
-	private Set<PhoneType> phones = new HashSet<>();
+	private List<Phone> phones = new ArrayList<>();
 
 	
 	
