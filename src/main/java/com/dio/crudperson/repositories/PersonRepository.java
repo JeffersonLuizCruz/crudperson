@@ -8,6 +8,6 @@ import com.dio.crudperson.entities.Person;
 @Repository
 public interface PersonRepository extends JpaRepository<Person, Long>{
 	
-	Person findByCpf(Long id);
+	Person findByCpf(String cpf);
 
 }

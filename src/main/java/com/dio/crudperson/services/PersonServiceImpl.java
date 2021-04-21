@@ -10,8 +10,7 @@ import com.dio.crudperson.entities.Person;
 import com.dio.crudperson.repositories.PersonRepository;
 import com.dio.crudperson.services.crudservice.PersonService;
 import com.dio.crudperson.services.execeptions.BadRequestException;
-
-import javassist.NotFoundException;
+import com.dio.crudperson.services.execeptions.NotFoundException;
 
 @Service
 public class PersonServiceImpl implements PersonService{
@@ -24,7 +23,7 @@ public class PersonServiceImpl implements PersonService{
 	}
 
 	@Override
-	public Person findById(Long id) throws NotFoundException {
+	public Person findById(Long id) {
 		
 		return verifyIfExist(id);
 	}
@@ -39,11 +38,10 @@ public class PersonServiceImpl implements PersonService{
 	@Override
 	public Person save(Person person) {
 		person.setId(null);
+		Person verifyIfExist = personRepository.findByCpf(person.getCpf());
 		
-		try {
-			personRepository.findByCpf(person.getId());
-		} catch (Exception e) {
-			throw new BadRequestException("Usuário com esse CPF já existe!: " + person.getCpf());
+		if(verifyIfExist != null && !verifyIfExist.equals(person)) {
+			throw new BadRequestException("Usuário com CPF cadastrado no sistema " + person.getCpf());
 		}
 		
 		Person savePerson = personRepository.save(person);
@@ -52,22 +50,22 @@ public class PersonServiceImpl implements PersonService{
 	}
 
 	@Override
-	public Person update(Person person) throws NotFoundException {
+	public Person update(Person person) {
 		Person updatePerson = verifyIfExist(person.getId());
 		
 		return updatePerson;
 	}
 
 	@Override
-	public void delete(Long id) throws NotFoundException {
+	public void delete(Long id) {
 		Person deletePerson = verifyIfExist(id);
 		personRepository.delete(deletePerson);
 		
 	}
 	
-	private Person verifyIfExist(Long id) throws NotFoundException {
+	private Person verifyIfExist(Long id) {
 		Optional<Person> result = personRepository.findById(id);
-		result.orElseThrow(() -> new NotFoundException("Não existe usuário com id: " + id + " Tipo: " + Person.class));
+		result.orElseThrow(() ->  new NotFoundException("Não existe usuário com id: " + id ));
 		
 		return result.get();
 	}
