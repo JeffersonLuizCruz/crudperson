@@ -42,5 +42,6 @@ public class PersonResponseDto implements Serializable{
 		this.firstName = person.getFirstName();
 		this.lastName = person.getLastName();
 		this.birthDate = person.getBirthDate();
+		this.cpf = person.getCpf();
 	}
 }

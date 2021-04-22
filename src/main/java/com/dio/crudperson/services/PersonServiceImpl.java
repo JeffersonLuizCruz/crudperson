@@ -5,9 +5,11 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.dio.crudperson.entities.Person;
 import com.dio.crudperson.repositories.PersonRepository;
+import com.dio.crudperson.repositories.PhoneRepository;
 import com.dio.crudperson.services.crudservice.PersonService;
 import com.dio.crudperson.services.execeptions.BadRequestException;
 import com.dio.crudperson.services.execeptions.NotFoundException;
@@ -15,12 +17,9 @@ import com.dio.crudperson.services.execeptions.NotFoundException;
 @Service
 public class PersonServiceImpl implements PersonService{
 	
-	private final PersonRepository personRepository;
+	@Autowired private  PersonRepository personRepository;
+	@Autowired private PhoneRepository phoneRepository;
 	
-	@Autowired
-	 public PersonServiceImpl(PersonRepository personRepository) {
-		this.personRepository = personRepository;
-	}
 
 	@Override
 	public Person findById(Long id) {
@@ -35,6 +34,7 @@ public class PersonServiceImpl implements PersonService{
 		return list;
 	}
 
+	@Transactional
 	@Override
 	public Person save(Person person) {
 		person.setId(null);
@@ -45,10 +45,13 @@ public class PersonServiceImpl implements PersonService{
 		}
 		
 		Person savePerson = personRepository.save(person);
+		phoneRepository.saveAll(savePerson.getPhones());
+		
 		
 		return savePerson;
 	}
 
+	@Transactional
 	@Override
 	public Person update(Person person) {
 		Person updatePerson = verifyIfExist(person.getId());

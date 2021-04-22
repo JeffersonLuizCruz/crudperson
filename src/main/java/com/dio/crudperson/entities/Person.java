@@ -5,13 +5,14 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.persistence.CollectionTable;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
-import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
@@ -44,8 +45,8 @@ public class Person implements Serializable{
 	@JsonFormat(pattern = "dd/MM/yyyy")
 	private LocalDate birthDate;
 	
-	@ElementCollection
-	@CollectionTable(name = "phones")
+	@OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+	@JoinColumn(name = "phones")
 	private List<Phone> phones = new ArrayList<>();
 
 	
