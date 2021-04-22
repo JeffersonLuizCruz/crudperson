@@ -59,8 +59,27 @@ spring.jpa.properties.hibernate.format_sql=true
 
 ```
 
-### [POST] Save status 200 ok
+### [POST] Save status 200 OK
 <h1 align="center">
     <img src="https://github.com/JeffersonLuizCruz/crudperson/blob/main/src/main/java/com/dio/save.png" />
 </h1>
 
+### [POST] Save status 400 BAD REQUEST
+<h1 align="center">
+    <img src="https://github.com/JeffersonLuizCruz/crudperson/blob/main/src/main/java/com/dio/saveException.png" />
+</h1>
+
+### [POST] FindById status 200 OK
+<h1 align="center">
+    <img src="https://github.com/JeffersonLuizCruz/crudperson/blob/main/src/main/java/com/dio/getById.png" />
+</h1>
+
+### [POST] FindById status 404 NOT FOUND
+<h1 align="center">
+    <img src="https://github.com/JeffersonLuizCruz/crudperson/blob/main/src/main/java/com/dio/getByIdException.png" />
+</h1>
+
+### [POST] ListAll status 200 OK | CONSULTA PAGINADA
+<h1 align="center">
+    <img src="https://github.com/JeffersonLuizCruz/crudperson/blob/main/src/main/java/com/dio/pageRequest.png" />
+</h1>
