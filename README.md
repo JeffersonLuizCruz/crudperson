@@ -21,7 +21,7 @@
 
 > É proposto o desenvolvimento de uma REST API para realização de um CRUD de uma entidade pessoa. 
 
-O sistema permite o registro de usurio no bando de dados. É permitido o cadastro de um usário por CPF. A API não permite CPF iguais no bando de dados lançando uma exceção para o cliente. Os dados do usuário podem ser consultado por meio de uma listagem paginada e por seu código de identificação. Por fim, a aplicação permite as alterações dos dados cadastrados.
+O sistema permite o registro de usurio no bando de dados. É permitido o cadastro de um usuário por CPF. A API não permite CPF iguais no bando de dados lançando uma exceção para o cliente. Os dados do usuário podem ser consultado por meio de uma listagem paginada e por seu código de identificação. Por fim, a aplicação permite as alterações dos dados cadastrados.
 
 
 ## :page_with_curl: Diagrama de Classe <a name="-diagrama"/></a>
@@ -59,32 +59,32 @@ spring.jpa.properties.hibernate.format_sql=true
 
 ```
 
-### [POST] Save status 200 OK
+### [POST] save     | status 200 OK
 <h1 align="center">
     <img src="https://github.com/JeffersonLuizCruz/crudperson/blob/main/src/main/java/com/dio/save.png" />
 </h1>
 
-### [POST] Save status 400 BAD REQUEST
+### [POST] save     | status 400 BAD REQUEST
 <h1 align="center">
     <img src="https://github.com/JeffersonLuizCruz/crudperson/blob/main/src/main/java/com/dio/saveException.png" />
 </h1>
 
-### [PUT] Update status 200 OK
+### [PUT] update    | status 200 OK
 <h1 align="center">
     <img src="https://github.com/JeffersonLuizCruz/crudperson/blob/main/src/main/java/com/dio/update.png" />
 </h1>
 
-### [GET] FindById status 200 OK
+### [GET] findById  | status 200 OK
 <h1 align="center">
     <img src="https://github.com/JeffersonLuizCruz/crudperson/blob/main/src/main/java/com/dio/getById.png" />
 </h1>
 
-### [GET] FindById status 404 NOT FOUND
+### [GET] findById  | status 404 NOT FOUND
 <h1 align="center">
     <img src="https://github.com/JeffersonLuizCruz/crudperson/blob/main/src/main/java/com/dio/getByIdException.png" />
 </h1>
 
-### [GET] ListAll status 200 OK | CONSULTA PAGINADA
+### [GET] listAll   | status  200 OK | CONSULTA PAGINADA
 <h1 align="center">
     <img src="https://github.com/JeffersonLuizCruz/crudperson/blob/main/src/main/java/com/dio/pageRequest.png" />
 </h1>
