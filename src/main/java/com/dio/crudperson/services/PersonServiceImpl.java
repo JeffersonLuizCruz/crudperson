@@ -4,6 +4,9 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -13,6 +16,8 @@ import com.dio.crudperson.repositories.PhoneRepository;
 import com.dio.crudperson.services.crudservice.PersonService;
 import com.dio.crudperson.services.execeptions.BadRequestException;
 import com.dio.crudperson.services.execeptions.NotFoundException;
+import com.dio.crudperson.services.pagemodel.PageModel;
+import com.dio.crudperson.services.pagemodel.PagePersonModel;
 
 @Service
 public class PersonServiceImpl implements PersonService{
@@ -26,12 +31,29 @@ public class PersonServiceImpl implements PersonService{
 		
 		return verifyIfExist(id);
 	}
-
+	
+	/**
+	 * @deprecated
+	 * 
+	 *  Upgrade to method listAllByOnLazyMode()
+	 * */
 	@Override
 	public List<Person> listAll() {
 		List<Person> list = personRepository.findAll();
 		
 		return list;
+	}
+	
+	public PageModel<Person> listAllByOnLazyModel(PagePersonModel pr){
+		Pageable pageable = PageRequest.of(pr.getPage(), pr.getSize());
+		Page<Person> page = personRepository.findAll(pageable);
+		
+		PageModel<Person> pm = new PageModel<>(
+				(int)page.getTotalElements(),
+				page.getSize(), page.getTotalPages(),
+				page.getContent());
+		
+		return pm;
 	}
 
 	@Transactional
@@ -55,8 +77,10 @@ public class PersonServiceImpl implements PersonService{
 	@Override
 	public Person update(Person person) {
 		Person updatePerson = verifyIfExist(person.getId());
+		Person update = personRepository.save(updatePerson);
+		phoneRepository.saveAll(update.getPhones());
 		
-		return updatePerson;
+		return update;
 	}
 
 	@Override

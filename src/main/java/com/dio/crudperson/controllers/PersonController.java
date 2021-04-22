@@ -1,7 +1,5 @@
 package com.dio.crudperson.controllers;
 
-import java.util.List;
-import java.util.stream.Collectors;
 
 import javax.validation.Valid;
 
@@ -11,14 +9,18 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.dio.crudperson.dto.request.PersonRequestDto;
 import com.dio.crudperson.dto.response.PersonResponseDto;
 import com.dio.crudperson.entities.Person;
 import com.dio.crudperson.services.PersonServiceImpl;
+import com.dio.crudperson.services.pagemodel.PageModel;
+import com.dio.crudperson.services.pagemodel.PagePersonModel;
 
 import javassist.NotFoundException;
 
@@ -26,12 +28,8 @@ import javassist.NotFoundException;
 @RequestMapping("/api/v1/people")
 public class PersonController {
 	
-	private final PersonServiceImpl personService;
+	@Autowired private PersonServiceImpl personService;
 	
-	@Autowired
-	public PersonController(PersonServiceImpl personService) {
-		this.personService = personService;
-	}
 	
 	
 	@GetMapping(value = "/{id}")
@@ -40,6 +38,10 @@ public class PersonController {
 		return ResponseEntity.ok(result);
 	}
 	
+	/**********************
+	 * 
+	 *  Upgrade listAll() to listAllByOnLazyMode
+	 *  
 	@GetMapping
 	public ResponseEntity<List<PersonResponseDto>> listAll() {
 		List<Person> list = personService.listAll();
@@ -51,6 +53,21 @@ public class PersonController {
 		return ResponseEntity.ok().body(listDto);
 	}
 	
+	********************/
+	
+	@GetMapping
+	public ResponseEntity<PageModel<Person>> listAllByOnLazyModel(
+			@RequestParam(value = "page", defaultValue = "0") int page,
+			@RequestParam(value = "size", defaultValue = "10") int size){
+		
+		PagePersonModel pr = new PagePersonModel(page, size);
+		
+		PageModel<Person> pm = personService.listAllByOnLazyModel(pr);
+		
+		return ResponseEntity.ok(pm);
+	}
+	
+	
 	@PostMapping
 	public ResponseEntity<PersonResponseDto> save(@Valid @RequestBody PersonRequestDto requestDto){
 		Person savePerson = personService.save(requestDto.transformToDto());
@@ -58,9 +75,9 @@ public class PersonController {
 		return ResponseEntity.ok().body(new PersonResponseDto(savePerson));
 	}
 	
-	@PostMapping(value = "/{id}")
-	public ResponseEntity<PersonResponseDto> update(@Valid @RequestBody PersonRequestDto requestDto, @PathVariable Long id) throws NotFoundException{
-		Person updatePerson = personService.update(requestDto.transformToDto());
+	@PutMapping(value = "/{id}")
+	public ResponseEntity<PersonResponseDto> update(@Valid @RequestBody PersonRequestDto requestDto, @PathVariable Long id){
+		Person updatePerson = requestDto.transformToDto();
 		updatePerson.setId(id);
 		
 		return ResponseEntity.ok().body(new PersonResponseDto(updatePerson));
