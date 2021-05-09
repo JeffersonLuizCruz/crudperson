@@ -23,7 +23,6 @@ import com.dio.crudperson.services.PersonServiceImpl;
 import com.dio.crudperson.services.pagemodel.PageModel;
 import com.dio.crudperson.services.pagemodel.PagePersonModel;
 
-import javassist.NotFoundException;
 
 @RestController
 @RequestMapping("/api/v1/people")
@@ -40,7 +39,7 @@ public class PersonController {
 	}
 	
 	@GetMapping(value = "/{id}")
-	public ResponseEntity<Person> getById(@PathVariable Long id) throws NotFoundException {
+	public ResponseEntity<Person> findById(@PathVariable Long id){
 		Person result = personService.findById(id);
 		return ResponseEntity.ok(result);
 	}

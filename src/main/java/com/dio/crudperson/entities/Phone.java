@@ -13,15 +13,14 @@ import javax.persistence.Id;
 import com.dio.crudperson.entities.enums.PhoneType;
 
 import lombok.AllArgsConstructor;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
+import lombok.Builder;
+import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 
 @AllArgsConstructor
 @NoArgsConstructor
-@EqualsAndHashCode
-@Getter @Setter
+@Data
+@Builder
 @Entity
 public class Phone implements Serializable{
 	private static final long serialVersionUID = 1L;

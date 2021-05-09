@@ -2,7 +2,8 @@ package com.dio.crudperson.dto.request;
 
 import java.io.Serializable;
 import java.time.LocalDate;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -13,13 +14,14 @@ import com.dio.crudperson.entities.Phone;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 import lombok.AllArgsConstructor;
-import lombok.Getter;
+import lombok.Builder;
+import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 
 @AllArgsConstructor
 @NoArgsConstructor
-@Getter @Setter
+@Data
+@Builder
 public class PersonRequestDto implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
@@ -37,7 +39,8 @@ public class PersonRequestDto implements Serializable{
 	
 	@JsonFormat(pattern = "dd/MM/yyyy")
 	private LocalDate birthDate;
-
-	private List<Phone> phones;
+	
+	@Builder.Default
+	private Set<Phone> phones = new HashSet<>();
 
 }

@@ -16,15 +16,15 @@ import javax.persistence.OneToMany;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
+import lombok.AllArgsConstructor;
+import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 
 
+
+@Data
 @NoArgsConstructor
-@EqualsAndHashCode
-@Getter @Setter
+@AllArgsConstructor
 @Entity
 public class Person implements Serializable{
 	private static final long serialVersionUID = 1L;
@@ -44,6 +44,7 @@ public class Person implements Serializable{
 	
 	@JsonFormat(pattern = "dd/MM/yyyy")
 	private LocalDate birthDate;
+	
 	
 	@OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
 	@JoinColumn(name = "phones")
