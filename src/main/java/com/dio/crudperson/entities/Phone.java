@@ -20,7 +20,7 @@ import lombok.Setter;
 
 @AllArgsConstructor
 @NoArgsConstructor
-@EqualsAndHashCode(of = "id")
+@EqualsAndHashCode
 @Getter @Setter
 @Entity
 public class Phone implements Serializable{
