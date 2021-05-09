@@ -3,6 +3,7 @@ package com.dio.crudperson.controllers;
 
 import javax.validation.Valid;
 
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -28,32 +29,21 @@ import javassist.NotFoundException;
 @RequestMapping("/api/v1/people")
 public class PersonController {
 	
-	@Autowired private PersonServiceImpl personService;
+	private PersonServiceImpl personService;
+	private ModelMapper modelMapper;
 	
-	
+	@Autowired
+	public PersonController(PersonServiceImpl personServiceImpl, ModelMapper modelMapper) {
+		this.personService = personServiceImpl;
+		this.modelMapper = modelMapper;
+		
+	}
 	
 	@GetMapping(value = "/{id}")
 	public ResponseEntity<Person> getById(@PathVariable Long id) throws NotFoundException {
 		Person result = personService.findById(id);
 		return ResponseEntity.ok(result);
 	}
-	
-	/**********************
-	 * 
-	 *  Upgrade listAll() to listAllByOnLazyMode
-	 *  
-	@GetMapping
-	public ResponseEntity<List<PersonResponseDto>> listAll() {
-		List<Person> list = personService.listAll();
-		List<PersonResponseDto> listDto = list
-											.stream()
-											.map(result -> new PersonResponseDto(result))
-											.collect(Collectors.toList());
-		
-		return ResponseEntity.ok().body(listDto);
-	}
-	
-	********************/
 	
 	@GetMapping
 	public ResponseEntity<PageModel<Person>> listAllByOnLazyModel(
@@ -64,27 +54,27 @@ public class PersonController {
 		
 		PageModel<Person> pm = personService.listAllByOnLazyModel(pr);
 		
-		return ResponseEntity.ok(pm);
+		return ResponseEntity.ok().body(pm);
 	}
 	
 	
 	@PostMapping
 	public ResponseEntity<PersonResponseDto> save(@Valid @RequestBody PersonRequestDto requestDto){
-		Person savePerson = personService.save(requestDto.transformToDto());
+		Person savePerson = modelMapper.map(requestDto, Person.class);
 		
-		return ResponseEntity.ok().body(new PersonResponseDto(savePerson));
+		return ResponseEntity.ok().body(modelMapper.map(savePerson, PersonResponseDto.class));
 	}
 	
 	@PutMapping(value = "/{id}")
 	public ResponseEntity<PersonResponseDto> update(@Valid @RequestBody PersonRequestDto requestDto, @PathVariable Long id){
-		Person updatePerson = requestDto.transformToDto();
+		Person updatePerson = modelMapper.map(requestDto, Person.class);
 		updatePerson.setId(id);
 		
-		return ResponseEntity.ok().body(new PersonResponseDto(updatePerson));
+		return ResponseEntity.ok().body(modelMapper.map(updatePerson, PersonResponseDto.class));
 	}
 	
 	@DeleteMapping(value = "/{id}")
-	public ResponseEntity<Void> delete(@PathVariable Long id) throws NotFoundException {
+	public ResponseEntity<Void> delete(@PathVariable Long id) {
 		personService.delete(id);
 		
 		return ResponseEntity.noContent().build();

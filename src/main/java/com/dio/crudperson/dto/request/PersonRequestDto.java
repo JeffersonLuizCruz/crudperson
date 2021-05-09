@@ -9,7 +9,6 @@ import javax.validation.constraints.Size;
 
 import org.hibernate.validator.constraints.br.CPF;
 
-import com.dio.crudperson.entities.Person;
 import com.dio.crudperson.entities.Phone;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
@@ -40,10 +39,5 @@ public class PersonRequestDto implements Serializable{
 	private LocalDate birthDate;
 
 	private List<Phone> phones;
-	
-	public Person transformToDto() {
-		Person person = new Person(null, this.firstName, this.lastName, this.cpf, this.birthDate);
-		
-		return person;
-	}
+
 }

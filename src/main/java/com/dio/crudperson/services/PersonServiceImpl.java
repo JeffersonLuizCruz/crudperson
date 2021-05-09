@@ -34,8 +34,6 @@ public class PersonServiceImpl implements PersonService{
 	
 	/**
 	 * @deprecated
-	 * 
-	 *  Upgrade to method listAllByOnLazyMode()
 	 * */
 	@Override
 	public List<Person> listAll() {
@@ -44,6 +42,7 @@ public class PersonServiceImpl implements PersonService{
 		return list;
 	}
 	
+	@Override
 	public PageModel<Person> listAllByOnLazyModel(PagePersonModel pr){
 		Pageable pageable = PageRequest.of(pr.getPage(), pr.getSize());
 		Page<Person> page = personRepository.findAll(pageable);
@@ -60,15 +59,10 @@ public class PersonServiceImpl implements PersonService{
 	@Override
 	public Person save(Person person) {
 		person.setId(null);
-		Person verifyIfExist = personRepository.findByCpf(person.getCpf());
-		
-		if(verifyIfExist != null && !verifyIfExist.equals(person)) {
-			throw new BadRequestException("Usuário com CPF cadastrado no sistema " + person.getCpf());
-		}
+		verifyField(person);
 		
 		Person savePerson = personRepository.save(person);
 		phoneRepository.saveAll(savePerson.getPhones());
-		
 		
 		return savePerson;
 	}
@@ -96,5 +90,12 @@ public class PersonServiceImpl implements PersonService{
 		
 		return result.get();
 	}
-
+	
+	private void verifyField(Person person) {
+		Person verifyIfExist = personRepository.findByCpf(person.getCpf());
+		
+		if(verifyIfExist != null && !verifyIfExist.equals(person)) {
+			throw new BadRequestException("Usuário com CPF cadastrado no sistema " + person.getCpf());
+		}
+	}
 }
