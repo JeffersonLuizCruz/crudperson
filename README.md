@@ -40,7 +40,7 @@ O sistema permite o registro de usurio no bando de dados. É permitido o cadastr
 - [x] CRUD (ORM Hibernate - Ambiente de teste)<br>
 - [x] Exception Personalizada
 - [x] Consulta Paginada
-- [x] DTO
+- [x] DTO / ModelMapper
 
 ## Start do Projeto
 
