@@ -1,5 +1,5 @@
 <h1 align="center">
-    <img alt="Ecommerce" src="https://github.com/JeffersonLuizCruz/crudperson/blob/main/src/main/java/com/dio/crud.png" />
+    <img alt="Ecommerce" src="https://github.com/JeffersonLuizCruz/crudperson/blob/main/src/main/resources/templates/crud.png" />
 </h1>
 
 <h3 align="center">
@@ -26,7 +26,7 @@ O sistema permite o registro de usurio no bando de dados. É permitido o cadastr
 
 ## :page_with_curl: Diagrama de Classe <a name="-diagrama"/></a>
 <h1 align="center">
-    <img alt="Ecommerce" src="https://github.com/JeffersonLuizCruz/crudperson/blob/main/src/main/java/com/dio/diagramaClasse.png" />
+    <img alt="Ecommerce" src="https://github.com/JeffersonLuizCruz/crudperson/blob/main/src/main/resources/templates/diagramaClasse.png" />
 </h1>
 
 ## Tecnologia:
@@ -61,30 +61,30 @@ spring.jpa.properties.hibernate.format_sql=true
 
 ### [POST] save     | status 200 OK
 <h1 align="center">
-    <img src="https://github.com/JeffersonLuizCruz/crudperson/blob/main/src/main/java/com/dio/save.png" />
+    <img src="https://github.com/JeffersonLuizCruz/crudperson/blob/main/src/main/resources/templates/save.png" />
 </h1>
 
 ### [POST] save     | status 400 BAD REQUEST
 <h1 align="center">
-    <img src="https://github.com/JeffersonLuizCruz/crudperson/blob/main/src/main/java/com/dio/saveException.png" />
+    <img src="https://github.com/JeffersonLuizCruz/crudperson/blob/main/src/main/resources/templates/saveException.png" />
 </h1>
 
 ### [PUT] update    | status 200 OK
 <h1 align="center">
-    <img src="https://github.com/JeffersonLuizCruz/crudperson/blob/main/src/main/java/com/dio/update.png" />
+    <img src="https://github.com/JeffersonLuizCruz/crudperson/blob/main/src/main/resources/templates/update.png" />
 </h1>
 
 ### [GET] findById  | status 200 OK
 <h1 align="center">
-    <img src="https://github.com/JeffersonLuizCruz/crudperson/blob/main/src/main/java/com/dio/getById.png" />
+    <img src="https://github.com/JeffersonLuizCruz/crudperson/blob/main/src/main/resources/templates/getById.png" />
 </h1>
 
 ### [GET] findById  | status 404 NOT FOUND
 <h1 align="center">
-    <img src="https://github.com/JeffersonLuizCruz/crudperson/blob/main/src/main/java/com/dio/getByIdException.png" />
+    <img src="https://github.com/JeffersonLuizCruz/crudperson/blob/main/src/main/resources/templates/getByIdException.png" />
 </h1>
 
 ### [GET] listAll   | status  200 OK | CONSULTA PAGINADA
 <h1 align="center">
-    <img src="https://github.com/JeffersonLuizCruz/crudperson/blob/main/src/main/java/com/dio/pageRequest.png" />
+    <img src="https://github.com/JeffersonLuizCruz/crudperson/blob/main/src/main/resources/templates/pageRequest.png" />
 </h1>
