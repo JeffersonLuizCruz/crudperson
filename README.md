@@ -34,7 +34,9 @@ O sistema permite o registro de usurio no bando de dados. É permitido o cadastr
 - [x] Spring Boot 2.4.5<br>
 - [x] Spring Data - JPA/Hibernate<br>
 - [x] Banco de Dados PostgreSQL<br>
+- [x] Apache Maven 3.6.0
 - [x] JUnit5, Mockito
+- [ ] Heroku
 
 ## Construção do Projeto:
 - [x] Criação de Interface Service (garantir baixo acoplamento)<br>
