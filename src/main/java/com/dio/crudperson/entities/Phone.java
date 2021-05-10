@@ -14,12 +14,13 @@ import com.dio.crudperson.entities.enums.PhoneType;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
-import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
-@AllArgsConstructor
 @NoArgsConstructor
-@Data
+@AllArgsConstructor
+@Getter @Setter
 @Builder
 @Entity
 public class Phone implements Serializable{
@@ -28,6 +29,7 @@ public class Phone implements Serializable{
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
+	
 	@Column(length = 25)
 	private String number;
 	

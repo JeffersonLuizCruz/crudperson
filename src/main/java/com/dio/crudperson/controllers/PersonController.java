@@ -4,7 +4,7 @@ package com.dio.crudperson.controllers;
 import javax.validation.Valid;
 
 import org.modelmapper.ModelMapper;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.dio.crudperson.dto.request.PersonRequestDto;
 import com.dio.crudperson.dto.response.PersonResponseDto;
 import com.dio.crudperson.entities.Person;
-import com.dio.crudperson.services.PersonServiceImpl;
+import com.dio.crudperson.services.PersonService;
 import com.dio.crudperson.services.pagemodel.PageModel;
 import com.dio.crudperson.services.pagemodel.PagePersonModel;
 
@@ -28,12 +28,12 @@ import com.dio.crudperson.services.pagemodel.PagePersonModel;
 @RequestMapping("/api/v1/people")
 public class PersonController {
 	
-	private PersonServiceImpl personService;
+	private PersonService personService;
 	private ModelMapper modelMapper;
 	
-	@Autowired
-	public PersonController(PersonServiceImpl personServiceImpl, ModelMapper modelMapper) {
-		this.personService = personServiceImpl;
+	
+	public PersonController(PersonService personService, ModelMapper modelMapper) {
+		this.personService = personService;
 		this.modelMapper = modelMapper;
 		
 	}
@@ -59,9 +59,10 @@ public class PersonController {
 	
 	@PostMapping
 	public ResponseEntity<PersonResponseDto> save(@Valid @RequestBody PersonRequestDto requestDto){
-		Person savePerson = modelMapper.map(requestDto, Person.class);
+		Person entity = modelMapper.map(requestDto, Person.class);
+		Person savePerson = personService.save(entity);
 		
-		return ResponseEntity.ok().body(modelMapper.map(savePerson, PersonResponseDto.class));
+		return ResponseEntity.status(HttpStatus.CREATED).body(modelMapper.map(savePerson, PersonResponseDto.class));
 	}
 	
 	@PutMapping(value = "/{id}")

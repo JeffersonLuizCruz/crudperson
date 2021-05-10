@@ -1,4 +1,4 @@
-package com.dio.crudperson.services;
+package com.dio.crudperson.services.impl;
 
 import java.util.List;
 import java.util.Optional;
@@ -13,7 +13,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.dio.crudperson.entities.Person;
 import com.dio.crudperson.repositories.PersonRepository;
 import com.dio.crudperson.repositories.PhoneRepository;
-import com.dio.crudperson.services.crudservice.PersonService;
+import com.dio.crudperson.services.PersonService;
 import com.dio.crudperson.services.execeptions.BadRequestException;
 import com.dio.crudperson.services.execeptions.NotFoundException;
 import com.dio.crudperson.services.pagemodel.PageModel;
@@ -22,9 +22,15 @@ import com.dio.crudperson.services.pagemodel.PagePersonModel;
 @Service
 public class PersonServiceImpl implements PersonService{
 	
-	@Autowired private  PersonRepository personRepository;
-	@Autowired private PhoneRepository phoneRepository;
+	private  PersonRepository personRepository;
+	private PhoneRepository phoneRepository;
 	
+
+	@Autowired
+	public PersonServiceImpl(PersonRepository personRepository, PhoneRepository phoneRepository) {
+		this.personRepository = personRepository;
+		this.phoneRepository = phoneRepository;
+	}
 
 	@Override
 	public Person findById(Long id) {
@@ -62,7 +68,6 @@ public class PersonServiceImpl implements PersonService{
 		verifyField(person);
 		
 		Person savePerson = personRepository.save(person);
-		phoneRepository.saveAll(savePerson.getPhones());
 		
 		return savePerson;
 	}
@@ -94,8 +99,10 @@ public class PersonServiceImpl implements PersonService{
 	private void verifyField(Person person) {
 		Person verifyIfExist = personRepository.findByCpf(person.getCpf());
 		
-		if(verifyIfExist != null && !verifyIfExist.equals(person)) {
+		if(verifyIfExist != null && !verifyIfExist.equals(person)) 
 			throw new BadRequestException("Usuário com CPF cadastrado no sistema " + person.getCpf());
-		}
+		
+		
 	}
+	
 }

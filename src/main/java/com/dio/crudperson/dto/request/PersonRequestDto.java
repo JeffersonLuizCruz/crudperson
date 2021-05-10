@@ -15,15 +15,20 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
-import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @AllArgsConstructor
 @NoArgsConstructor
-@Data
+@EqualsAndHashCode
+@Getter @Setter
 @Builder
 public class PersonRequestDto implements Serializable{
 	private static final long serialVersionUID = 1L;
+	
+	private Long id;
 	
 	@NotNull(message = "Preenchimento obrigatório - Nome")
     @Size(min = 2, max = 100)

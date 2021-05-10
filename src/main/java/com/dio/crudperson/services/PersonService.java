@@ -1,4 +1,4 @@
-package com.dio.crudperson.services.crudservice;
+package com.dio.crudperson.services;
 
 import java.util.List;
 
