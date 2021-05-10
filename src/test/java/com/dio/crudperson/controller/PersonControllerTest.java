@@ -48,13 +48,14 @@ public class PersonControllerTest {
 			 	 										 .phones(Collections.singleton(PhoneUtil.createFakeDTO()))
 			 	 										 .build();
 		
-		Person savePerson = Person.builder().id(1L)
+		Person savePerson = Person.builder().id(null)
 											.firstName("Hugo")
 											.lastName("Luiz")
 											.birthDate(LocalDate.of(1991, 3, 14))
 											.cpf("98261347087")
 											.phones(Collections.singleton(PhoneUtil.createFakeDTO()))
 											.build();
+		
 		BDDMockito.given(personService.save(Mockito.any(Person.class))).willReturn(savePerson);
 								
 		
@@ -74,7 +75,7 @@ public class PersonControllerTest {
 			.andExpect(MockMvcResultMatchers.jsonPath("lastName").value(dto.getLastName()))
 			.andExpect(MockMvcResultMatchers.jsonPath("birthDate").value(dto.getBirthDate()))
 			.andExpect(MockMvcResultMatchers.jsonPath("cpf").value(dto.getCpf()))
-			.andExpect(MockMvcResultMatchers.jsonPath("phones").value(dto.getPhones()));
+			.andExpect(MockMvcResultMatchers.jsonPath("phones").value(Collections.singleton(PhoneUtil.createFakeDTO())));
 	}
 
 }
