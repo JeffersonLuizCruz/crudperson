@@ -34,6 +34,7 @@ O sistema permite o registro de usurio no bando de dados. É permitido o cadastr
 - [x] Spring Boot 2.4.5<br>
 - [x] Spring Data - JPA/Hibernate<br>
 - [x] Banco de Dados PostgreSQL<br>
+- [x] JUnit5, Mockito
 
 ## Construção do Projeto:
 - [x] Criação de Interface Service (garantir baixo acoplamento)<br>
@@ -41,6 +42,7 @@ O sistema permite o registro de usurio no bando de dados. É permitido o cadastr
 - [x] Exception Personalizada
 - [x] Consulta Paginada
 - [x] DTO / ModelMapper
+- [x] Teste Unitário e Teste de Integração(JUnit5 e Mockito)
 
 ## Start do Projeto
 
