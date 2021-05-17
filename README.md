@@ -64,7 +64,7 @@ spring.jpa.properties.hibernate.format_sql=true
 ```
 
 ### [POST] save     | status 200 OK
-[POST] - https://application-crudperson-api.herokuapp.com/api/v1/people
+[POST] POSTMAN- https://application-crudperson-api.herokuapp.com/api/v1/people
 #### Body:
 ```
 {
@@ -91,11 +91,27 @@ spring.jpa.properties.hibernate.format_sql=true
 </h1>
 
 ### [PUT] update    | status 200 OK
+[PUT] POSTMAN- https://application-crudperson-api.herokuapp.com/api/v1/people
+```
+{
+    "firstName": "Jeff",
+    "lastName": "Luiz",
+    "cpf": "08134146015",
+    "birthDate": "22/04/2021",
+    "phones": [
+        {
+            "number": "988053101",
+            "type": "COMMERCIAL"
+        }
+    ]
+}
+```
 <h1 align="center">
     <img src="https://github.com/JeffersonLuizCruz/crudperson/blob/main/src/main/resources/templates/update.png" />
 </h1>
 
 ### [GET] findById  | status 200 OK
+[GET] POSTMAN- https://application-crudperson-api.herokuapp.com/api/v1/people/1
 <h1 align="center">
     <img src="https://github.com/JeffersonLuizCruz/crudperson/blob/main/src/main/resources/templates/getById.png" />
 </h1>
@@ -106,6 +122,7 @@ spring.jpa.properties.hibernate.format_sql=true
 </h1>
 
 ### [GET] listAll   | status  200 OK | CONSULTA PAGINADA
+[GET] POSTMAN- https://application-crudperson-api.herokuapp.com/api/v1/people
 <h1 align="center">
     <img src="https://github.com/JeffersonLuizCruz/crudperson/blob/main/src/main/resources/templates/pageRequest.png" />
 </h1>
