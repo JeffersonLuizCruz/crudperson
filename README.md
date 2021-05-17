@@ -64,6 +64,23 @@ spring.jpa.properties.hibernate.format_sql=true
 ```
 
 ### [POST] save     | status 200 OK
+[POST] - https://application-crudperson-api.herokuapp.com/
+#### Body:
+`
+{
+    "firstName": "Jeff",
+    "lastName": "Luiz",
+    "cpf": "85731310041",
+    "birthDate": "22/04/2021",
+    "phones": [
+        {
+            "number": "988053101",
+            "type": "COMMERCIAL"
+        }
+    ]
+}
+`
+
 <h1 align="center">
     <img src="https://github.com/JeffersonLuizCruz/crudperson/blob/main/src/main/resources/templates/save.png" />
 </h1>
