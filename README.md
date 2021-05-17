@@ -64,7 +64,7 @@ spring.jpa.properties.hibernate.format_sql=true
 ```
 
 ### [POST] save     | status 200 OK
-[POST] - https://application-crudperson-api.herokuapp.com/
+[POST] - https://application-crudperson-api.herokuapp.com/api/v1/people
 #### Body:
 ```
 {
