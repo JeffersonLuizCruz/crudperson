@@ -36,7 +36,7 @@ O sistema permite o registro de usurio no bando de dados. É permitido o cadastr
 - [x] Banco de Dados PostgreSQL<br>
 - [x] Apache Maven 3.6.0
 - [x] JUnit5, Mockito
-- [ ] Heroku
+- [x] Heroku
 
 ## Construção do Projeto:
 - [x] Criação de Interface Service (garantir baixo acoplamento)<br>
@@ -46,7 +46,7 @@ O sistema permite o registro de usurio no bando de dados. É permitido o cadastr
 - [x] DTO / ModelMapper
 - [x] Teste Unitário e Teste de Integração(JUnit5 e Mockito)
 
-## Start do Projeto
+## Start do Projeto Local
 
 ```
 server.error.include-stacktrace=never
@@ -61,6 +61,11 @@ spring.jpa.hibernate.ddl-auto=validate
 spring.jpa.show-sql=true
 spring.jpa.properties.hibernate.format_sql=true
 
+```
+## Start no Heroku
+Utilize o link abaixo no seu Postman para realizar operação CRUD:
+```
+https://application-crudperson-api.herokuapp.com/api/v1/people
 ```
 
 ### [POST] save     | status 200 OK
