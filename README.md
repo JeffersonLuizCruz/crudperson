@@ -135,3 +135,7 @@ https://application-crudperson-api.herokuapp.com/api/v1/people
 
 ### [DELETE] delete   | status  204 NO CONTENT
 [DELETE] POSTMAN- https://application-crudperson-api.herokuapp.com/api/v1/people/1
+
+
+## :page_with_curl: Diagrama de Classe <a name="-contato"/></a>
+Dúvidas entrar em contato analista.jefferson.luiz@gmail.com
