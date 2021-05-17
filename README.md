@@ -92,6 +92,7 @@ spring.jpa.properties.hibernate.format_sql=true
 
 ### [PUT] update    | status 200 OK
 [PUT] POSTMAN- https://application-crudperson-api.herokuapp.com/api/v1/people
+#### Body:
 ```
 {
     "firstName": "Jeff",
@@ -126,3 +127,5 @@ spring.jpa.properties.hibernate.format_sql=true
 <h1 align="center">
     <img src="https://github.com/JeffersonLuizCruz/crudperson/blob/main/src/main/resources/templates/pageRequest.png" />
 </h1>
+### [DELETE] delete   | status  204 NO CONTENT
+[GET] POSTMAN- https://application-crudperson-api.herokuapp.com/api/v1/people/1
